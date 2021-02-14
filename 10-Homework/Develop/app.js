@@ -4,77 +4,140 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-
-// We can use this variable to create id numbers based on how many total people are in existance
-var totalMembers = 0
-
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-
 const render = require("./lib/htmlRenderer");
+const Employee = require("./lib/Employee");
+const Employees = []
+
 
 console.log("Hello and welcome. Please use this tool to generate a summary about your team and it's members");
 
+async function teamBuilder(){
 
-  var questions = ([
+var managerQuestions = await inquirer.prompt([
 
-    {type: 'input',
-    name: 'managerNum',
-    message: "Please enter the number of team managers of whom you will be entering data for."},
+  {
+    type: 'confirm',
+    name: 'managerRole',
+    message: "Please confirm that you will now be entering information for the manager."
+  },
 
-    {type: 'input',
+  {
+    type: 'input',
     name: 'managerName',
-    message: "Please Provide your first and last name."},
+    message: "Please provide the first and last name of the manager."
+  },
 
-    {type: 'input',
-    name: 'id',
-    message: "Please provide your ID number."},
+  {
+    type: 'input',
+    name: 'managerID',
+    message: "Please provide the ID number for the manager."
+  },
 
-    {type: 'input',
-    name: 'internNum',
-    message: "Please enter the number of interns you have on your team."},
+  {
+    type: 'input',
+    name: 'managerEmail',
+    message: "Please enter the managers email address."
+  },
 
-    {type: 'input',
-    name: 'engineerNum',
-    message: "Please enter the number of Engineers you have on your team."},
+  {
+    type: 'input',
+    name: 'managerOfficeNum',
+    message: "Please enter the office number of the manager."
+  },
 
-    {type: 'input',
-    name: 'employeeNum',
-    message: "Please enter the number of interns you have on your team."}
-    
+])
 
-  ])
-  .then(answers => {
-    // Use user feedback for... whatever!!
-  })
-  .catch(error => {
-    if(error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else went wrong
-    }
-  });
+var managerOutput = new Manager(managerQuestions.managerName, managerQuestions.managerID, managerQuestions.managerEmail, 'Manager', managerQuestions.managerOfficeNumber)
+Employees.push(managerOutput)
 
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
+var engineerQuestions = await inquirer.prompt([
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
+  {
+    type: 'confirm',
+    name: 'engineerRole',
+    message: "Please confirm that you will now be entering information for the engineer."
+  },
 
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
+  {
+    type: 'input',
+    name: 'engineerName',
+    message: "Please provide the first and last name of the engineer."
+  },
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
+  {
+    type: 'input',
+    name: 'engineerID',
+    message: "Please provide the ID number for the engineer."
+  },
 
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+  {
+    type: 'input',
+    name: 'engineerEmail',
+    message: "Please enter the engineer's email address."
+  },
+
+  {
+    type: 'input',
+    name: 'engineerGitHub',
+    message: "Please enter the github link for the engineer."
+  },
+
+])
+
+var engineerOutput = new Engineer(engineerQuestions.engineerName, engineerQuestions.engineerID, 'Engineer', engineerQuestions.engineerGitHub)
+Employees.push(engineerOutput)
+
+var internQuestions = await inquirer.prompt([
+
+  {
+    type: 'confirm',
+    name: 'internRole',
+    message: "Please confirm that you will now be entering information for the intern."
+  },
+
+  {
+    type: 'input',
+    name: 'internName',
+    message: "Please provide the first and last name of the intern."
+  },
+
+  {
+    type: 'input',
+    name: 'internID',
+    message: "Please provide the ID number for the intern."
+  },
+
+  {
+    type: 'input',
+    name: 'internEmail',
+    message: "Please enter the intern's email address."
+  },
+
+  {
+    type: 'input',
+    name: 'internSchool',
+    message: "Please enter the name of the school the intern went to."
+  },
+
+])
+
+var internOutput = new Intern(internQuestions.internName, internQuestions.internID, 'Intern', internQuestions.internSchool)
+Employees.push(internOutput)
+
+if( !fs.existsSync(OUTPUT_DIR) ) fs.mkdirSync(OUTPUT_DIR)
+fs.writeFileSync(outputPath, render(Employees), "utf-8");
+
+console.log('Thank you for entering the required information. Your team is now being generated!')
+
+}
+
+teamBuilder()
+
+
+
+
+
+
