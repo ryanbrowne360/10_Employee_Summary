@@ -14,9 +14,9 @@ const Employees = []
 console.log("Hello and welcome. Please use this tool to generate a summary about your team and it's members");
 
 
+
 async function teamBuilder() {
 
-  
   // await pauses the rest of the code being executed until the user responds to the prompt
   var managerQuestions = await inquirer.prompt([
 
@@ -54,7 +54,6 @@ async function teamBuilder() {
 
   var managerOutput = new Manager(managerQuestions.managerName, managerQuestions.managerID, managerQuestions.managerEmail, 'Manager', managerQuestions.managerOfficeNumber)
   Employees.push(managerOutput)
-
 
   var engineerQuestions = await inquirer.prompt([
 
@@ -134,10 +133,28 @@ async function teamBuilder() {
   fs.writeFileSync(outputPath, render(Employees), "utf-8");
 
   console.log('Thank you for entering the required information. Your team is now being generated!')
-
 }
 
 teamBuilder()
+
+//  var questionSet = await inquirer.prompt([
+
+//   {
+//     type: 'list',
+//     name: 'rolesToAsk',
+//     message: "Please select the roles that you will be entering information for",
+//     choices: ['Manager', 'Engineer', 'Intern']
+//   },
+// ])
+// decideQuestions()
+
+// function decideQuestions(){
+//   if (rolesToAsk == [0]){
+//     return manager_Questions()
+//   }
+// }
+
+// async function manager_Questions(){} //Remember must be wrapped in another function thats why the underscore if you are going to add this functionality.
 
 
 
