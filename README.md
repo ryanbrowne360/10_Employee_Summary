@@ -1,30 +1,29 @@
-[**Work Day Scheduler**](https://github.com/ryanbrowne360/05_Work_Day_Scheduler)
+[**Employee Summary**](https://github.com/ryanbrowne360/10_Employee_Summary)
 
 Description:
 
-This application is designed so that the user can look at their work day, with each hour block being color coded depending on whether it is in the past, present, or future. When the user adds a task to the input field and hits the save button, their input will be saved to local storage in their browser. When they refresh or open the page in a new window, whatever they entered will remain on the screen.
+This application is designed so that the user can create a team of employees using the command line with node js. It will then render an HTML page with the information gathered via the command line prompting. This application uses javascript classes to easily update information specific to the individual employees based on a predefined data set with predefined methods.
 
 Installation:
 
-In order to deploy this application, you simply need a browser that is capabale of supporting the technologies used in creating this webpage. A recomended browser would be google chrome. To see if you have a browser capable of viewing the webpage, just [Follow this link](https://ryanbrowne360.github.io/05_Work_Day_Scheduler/). If you are connected to the internet and are able to connect to the files which are hosted, you are able to use the app right away.
-
-[Hosted Application on Github Pages](https://ryanbrowne360.github.io/05_Work_Day_Scheduler/)
+In order to install and deploy this application, you need to have nodejs installed in your computer. [Click Here](https://nodejs.org/en/download/) to download it on your computer. You then need to download the develop folder in this github repository. Access this same directory through your terminal, and then type "node app.js". This will run your application. Also, if you want to run the tests, you simply type "npm run test" from the same directory.
 
 Usage:
 
-When the user visits this website, they are able to easily navigate around the page. They are able to use the features described above to plan their work day accordingly.
+When the user opens the application in their command line, they are presented with a series of questions that are in a specific order. It will ask details that are relevant to each employee. It will then render that information to an easy to read HTML page once the prompts are complete.
 
-- *Google Chrome*
 - *JavaScript*
 - *HTML*
 - *CSS*
+- *NodeJS*
 - *Ryan Browne Software Developer* [Ryan Browne](https://github.com/ryanbrowne360/)
 
 References:
 
 - [w3schools](https://www.w3schools.com/)
-- [Local Storage Tutorial](https://blog.usejournal.com/localstorage-what-is-it-d589a0803de0)
-- [MomentJS](https://momentjs.com/)
+- [NodeJS](https://nodejs.org/en/download/)
+- [Jest](https://jestjs.io/)
+- [Inquirer](https://www.npmjs.com/package/inquirer)
 
 License:
 
@@ -34,5 +33,5 @@ No License is required. You are free to use and modify this program as desired.
 ![HTML](https://img.shields.io/badge/HTML-100%25-orange)
 ![CSS](https://img.shields.io/badge/CSS-100%25-yellowgreen)
 
-![image](https://github.com/ryanbrowne360/05_Work_Day_Scheduler/blob/main/Screenshot%202021-02-05%20162322.png)
+![image](https://github.com/ryanbrowne360/10_Employee_Summary/blob/main/AppDemo.gif)
 
